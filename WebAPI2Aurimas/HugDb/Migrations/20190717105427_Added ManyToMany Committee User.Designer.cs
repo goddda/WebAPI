@@ -4,14 +4,16 @@ using HugDb;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HugDb.Migrations
 {
     [DbContext(typeof(HugDbContext))]
-    partial class HugDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190717105427_Added ManyToMany Committee User")]
+    partial class AddedManyToManyCommitteeUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

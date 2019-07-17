@@ -7,65 +7,74 @@ using WebAPI2Aurimas.Models;
 using WebAPI2Aurimas.Infrastructure;
 using Infrastructure;
 using HugDb.Repositories;
+using HugDb.Entities;
 
 namespace WebAPI2Aurimas.Controllers
 {
     [Route("api/[controller]")] // Paima bracketsuose controller name
     [ApiController] // Pasako, kad bus API, galetu but MVC
-    public class HugsController : ControllerBase // Jeigu pilnas butu tada tik Controller
+    public class UserController : ControllerBase // Jeigu pilnas butu tada tik Controller
     {
-        private readonly IMyLogger _logger;
-        
-        private DbManager _dbManager;
 
-        /*private readonly IMyTime _time;
-        public HugsController()
-        {
-            //_time = new myTime();
-            _logger = new FileLogger();
-        }
-        */
-        //_logger = new FileLogger();
-
-        // DB workshop
         private UserRepository _repository;
         
-        public HugsController(UserRepository repository)
+        public UserController(UserRepository repository)
         {
-            _logger = new FileLogger();
-            _dbManager = new DbManager(_logger);
             _repository = repository;
         }
         
         [HttpGet]
-        public List<HugModel> Get() // <HugModel> sumapina
+        public List<UserModel> Get()
         {
-            _logger.Log("Get started");
-
-            var hugs = _dbManager.GetHugs();
-            var mappedHugs = hugs.Select(h => new HugModel
-                {
-                    Id = h.Id,
-                    From = h.From,
-                    To = h.To,
-                    Reason = h.Reason,
-                    Created = h.Created
-                })
-                .ToList();
-            return mappedHugs;
+            var users = _repository.GetAllUsers();
+            var result = users.Select(x => new UserModel
+            {
+                FirstName = x.FirstName,
+                LastName = x.LastName,
+                Created = x.Created,
+                Id = x.Id,
+                Email = x.Email,
+            }).ToList();
+            return result;
         }
 
-        internal static object Where(Func<object, bool> p)
+        [HttpDelete("{id}")]
+        public ActionResult<string> Delete(int id)
         {
-            throw new NotImplementedException();
+            var userToDelete = _repository.GetUser(id);
+            _repository.Delete(userToDelete);
+
+            return $"User: {id} deleted";
         }
 
+        [HttpPost]
+        public string Post([FromBody]UserModel model)
+        {
+            var users = _repository.GetAllUsers();
+            int exist = users.Where(x => x.Id == model.Id).Count();
+
+            if (exist == 0)
+            {
+                User newUser = new User();
+
+                newUser.FirstName = model.FirstName;
+                newUser.LastName = model.LastName;
+                newUser.Created = model.Created;
+                newUser.Email = model.Email;
+
+                _repository.AddUser(newUser);
+                return "User added";
+            }
+            else
+                return "User exists already";
+        }
+        /*
         [HttpGet("{id}")]
         public HugModel Get(int id) // <HugModel> sumapina
         {
-            _logger.Log("Get by id started");
+            //_logger.Log("Get by id started");
 
-            var hugs = _dbManager.GetHugs();
+            //var hugs = _dbManager.GetHugs();
 
             var mappedHugs = hugs.Select(h => new HugModel
             {
@@ -115,7 +124,7 @@ namespace WebAPI2Aurimas.Controllers
             };
             _dbManager.UpdateHug(mappedHug);
         }
-        /*
+        
         [HttpPatch]
         public void Patch([FromBody]HugModel semimodel)
         {

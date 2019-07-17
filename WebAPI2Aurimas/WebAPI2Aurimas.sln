@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29025.244
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPI2Aurimas", "WebAPI2Aurimas\WebAPI2Aurimas.csproj", "{EA982CAF-A290-476E-9104-F35CEDE6E130}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAPI2Aurimas", "WebAPI2Aurimas\WebAPI2Aurimas.csproj", "{EA982CAF-A290-476E-9104-F35CEDE6E130}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Db", "Db\Db.csproj", "{1F36FED1-8600-459C-BA6F-B5BF49FD9904}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Db", "Db\Db.csproj", "{1F36FED1-8600-459C-BA6F-B5BF49FD9904}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{4EF39967-CC3F-4740-B7EE-33BD07EFE790}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{4EF39967-CC3F-4740-B7EE-33BD07EFE790}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HugDb", "HugDb\HugDb.csproj", "{A93D2CB8-C532-4164-A4DE-DA532A0A6DE0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{4EF39967-CC3F-4740-B7EE-33BD07EFE790}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4EF39967-CC3F-4740-B7EE-33BD07EFE790}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4EF39967-CC3F-4740-B7EE-33BD07EFE790}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A93D2CB8-C532-4164-A4DE-DA532A0A6DE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A93D2CB8-C532-4164-A4DE-DA532A0A6DE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A93D2CB8-C532-4164-A4DE-DA532A0A6DE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A93D2CB8-C532-4164-A4DE-DA532A0A6DE0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
